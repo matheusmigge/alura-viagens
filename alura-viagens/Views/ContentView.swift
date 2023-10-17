@@ -21,14 +21,15 @@ struct ContentView: View {
                         .frame(width: screen.size.width, height: self.horizontalSizeClass == .compact ? 210 : 350, alignment: .top)
                     
                     List(viagens) { viagem in
-                        NavigationLink(destination: MapView(coordenada: viagem.localizacao)){
+                        NavigationLink(destination: MapView(coordenada: viagem.localizacao).navigationBarTitle("Localização")){
                             CelulaViagemView(viagem: viagem)
                         }
-                    }.listStyle(.plain)
+                    }.navigationTitle("").listStyle(.plain)
+//                    vvv código necesário para compatibilidade com o ipad
                 }
             }
             .edgesIgnoringSafeArea(.all)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
